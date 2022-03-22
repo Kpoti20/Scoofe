@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+<html>
+<title>Template filiere</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="font-awesome.min.css">
+<meta charset="UTF-8">
+<link rel="stylesheet" href="bootstrap.min.css">
+  <script src="jquery.min.js"></script>
+  <script src="bootstrap.min.js"></script>
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+
+.tap {
+    width: 30px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('searchicon.png');
+    background-position: 10px 10px; 
+    background-repeat: no-repeat;
+    padding: 12px 20px 12px 40px;
+    margin-left: 15px;
+    -webkit-transition: width 0.4s ease-in-out;
+    transition: width 0.4s ease-in-out;
+}
+
+.tap:focus {
+    width: 50%;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+    border: 1px solid #ddd;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #009688;
+    color: white;
+}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-third">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <img src="w3images/avatar_hat.jpg" style="width:100%" alt="Avatar">
+          <div class="w3-display-bottomleft w3-container w3-text-black">
+            
+            <h2>Profil de <?php echo $userinfo['pseudo']; ?></h2>
+              <br/><br/>
+              Pseudo = <?php echo $userinfo['pseudo']; ?>
+              <br/>
+              Mail = <?php echo $userinfo['mail']; ?>
+                <?php
+                  if (isset($_SESSION['id']) AND $userinfo['id'] == $_SESSION['id']) {
+                  
+                    ?>
+                    <a href="editionprofil.php">Editer mon profil</a>
+                    <a href="deconnexion.php">Deconnexion</a>
+                    <?php
+                    }
+                    ?>
+          </div>
+        </div>
+        <div class="w3-container">
+        <br/>
+          <!--<p><i class="fa fa-briefcase fa-fw w3-margin-right w3-large w3-text-teal"></i></p>-->
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="" target="_parent" class="w3-padding-small w3-hover-white" style="text-decoration:none;">Ecrire</a></p>
+          <p><i class="fa fa-envelope fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="" target="_parent" class="w3-padding-small w3-hover-white" style="text-decoration:none;">Boite de reception</a></p>
+          <p><i class="fa fa-phone fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="" target="_parent" class="w3-padding-small w3-hover-white" style="text-decoration:none;">Carnet d'adresse</a></p>
+          <hr>
+
+          <!--<p class="w3-large"><b><i class="fa fa-asterisk fa-fw w3-margin-right w3-text-teal"></i><a href="" target="_parent" class="w3-padding-large w3-hover-white">Setting</a></b></p>
+          <p><i class="fa fa-home fa-fw w3-margin-right w3-large w3-text-teal"></i><a href="" target="_parent" class="w3-padding-large w3-hover-white">Media</a></p>-->
+         <p class="w3-small"><b><i class="fa fa-user fa-fw w3-margin-right w3-text-teal"></i><a href="" target="_parent" class="w3-padding-large w3-hover-white" style="text-decoration:none;">PARENT</a></b></p>
+         <p class="w3-small"><b><i class="fa fa-book fa-fw w3-margin-right w3-text-teal"></i><a href="" target="_parent" class="w3-padding-large w3-hover-white" style="text-decoration:none;">FILIERE</a></b></p>
+         <p class="w3-small"><b><i class="fa fa-users fa-fw w3-margin-right w3-text-teal"></i><a href="" target="_parent" class="w3-padding-large w3-hover-white" style="text-decoration:none;">ETUDIANT</a></b></p>
+         <p class="w3-small"><b><i class="fa fa-money fa-fw w3-margin-right w3-text-teal"></i><a href="" target="_parent" class="w3-padding-large w3-hover-white" style="text-decoration:none;">PAYEMENT DE SCOLARITE</a></b></p>
+         <hr>
+         <p class="w3-small"><b><i class="fa fa- fa-fw w3-margin-right w3-text-teal"></i><a href="" target="_parent" class="w3-padding-large w3-hover-white" style="text-decoration:none;">SETTING</a></b></p>
+         
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-twothird">
+    
+      <div class="w3-container w3-card-2  w3-margin-bottom">
+        <h2 class="w3-text-teal w3-padding-4"><i>Nouveau Filière</i></h2>
+        <div class="w3-container">
+          <div class="w3-row-padding w3-light-grey w3-padding-16 w3-container">
+          <div class="w3-content">
+            <form  >
+              <p>
+              <label for="nom" >Nom</label>
+              <input class="w3-input  "  type="text"  placeholder="Le nom de la filière" id="fil" name="fil"></p>
+              <p>
+              <label for="mail" >Description</label>
+              <input class="w3-input" type="text"  placeholder="La description de la filière" id="des" name="des"></p>
+           
+              <button  type="submit"  class="btn btn-default" name="forminscription" >Sauvegarder</button><br/>
+            </form>
+          </div>
+</div>
+        </div>
+        </div>
+
+      <div class="w3-container w3-card-2 ">
+        <h2 class="w3-text-teal w3-padding-16"><i>Liste des filières</i></h2>
+        
+
+<form>
+  <input type="text" class="tap" name="search" placeholder="Search..">
+</form><br/>
+        <div class="container">
+                                                                                        
+  <div class="table-responsive ">          
+  <table style="width:820px;">
+    <thead>
+      <tr>
+        <th>ID Filière</th>
+        <th>Nom Filière</th>
+        <th>Description Filière</th>
+        <th>Action de Suppression</th>
+        <th>Action de Modification</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>Supprimer</td>
+        <td>Modifier</td>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>Anna</td>
+        <td>Pitt</td>
+        <td>Supprimer</td>
+        <td>Modifier</td>
+      </tr>
+    </tbody>
+  </table>
+  </div><br/>
+</div>
+        
+      </div>
+
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top">
+  <p>Find me on social media.</p>
+  <i class="fa fa-facebook-official w3-hover-text-indigo w3-large"></i>
+  <i class="fa fa-instagram w3-hover-text-purple w3-large"></i>
+  <i class="fa fa-snapchat w3-hover-text-yellow w3-large"></i>
+  <i class="fa fa-pinterest-p w3-hover-text-red w3-large"></i>
+  <i class="fa fa-twitter w3-hover-text-light-blue w3-large"></i>
+  <i class="fa fa-linkedin w3-hover-text-indigo w3-large"></i>
+  <p>Powered by <a href="default.html" target="_blank">w3.css</a></p>
+</footer>
+
+</body>
+
+<!-- Mirrored from www.w3schools.com/w3css/tryit.asp?filename=tryw3css_templates_cv&stacked=h by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 08 Dec 2016 15:08:10 GMT -->
+</html>
+<?php
+}else{
+  echo "Desole";
+}
+
+?>
